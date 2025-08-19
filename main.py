@@ -9,6 +9,7 @@ import win32con
 import ctypes
 import numpy as np
 import psutil
+import requests
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
@@ -29,6 +30,65 @@ def resource_path(relative_path):
     except Exception:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
+
+
+# Função para enviar mensagem via Telegram
+def send_telegram_message(message):
+    try:
+        bot_token = "8218411510:AAH9xMjWe8eJNa7APgaOvP9aXiuf8j86OA8"
+        # Usando o chat_id que será determinado. Por enquanto vou usar um método alternativo
+        chat_id = None
+        
+        # Primeiro, tenta obter o chat_id das atualizações recentes
+        try:
+            updates_url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
+            response = requests.get(updates_url, timeout=5)
+            if response.status_code == 200:
+                data = response.json()
+                if data['ok'] and data['result']:
+                    # Pega o último chat_id disponível
+                    for update in data['result']:
+                        if 'message' in update:
+                            chat_id = update['message']['chat']['id']
+                            break
+        except:
+            pass
+        
+        # Se não conseguiu obter o chat_id das atualizações, usa um método alternativo
+        if chat_id is None:
+            # Salva o chat_id em um arquivo para uso futuro
+            try:
+                with open('telegram_config.json', 'r') as f:
+                    config = json.load(f)
+                    chat_id = config.get('chat_id')
+            except:
+                # Se não tem arquivo de config, cria um padrão
+                # O usuário precisará enviar pelo menos uma mensagem para o bot primeiro
+                print("Para receber notificações no Telegram, envie qualquer mensagem para o bot @brd2025bot primeiro")
+                return False
+        
+        if chat_id:
+            send_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+            payload = {
+                'chat_id': chat_id,
+                'text': message
+            }
+            
+            response = requests.post(send_url, json=payload, timeout=10)
+            if response.status_code == 200:
+                # Salva o chat_id para uso futuro
+                try:
+                    with open('telegram_config.json', 'w') as f:
+                        json.dump({'chat_id': chat_id}, f)
+                except:
+                    pass
+                return True
+        
+        return False
+        
+    except Exception as e:
+        print(f"Erro ao enviar mensagem para Telegram: {str(e)}")
+        return False
 
 
 class AccountDialog(QDialog):
@@ -699,6 +759,8 @@ class AutoLoginWindow(QMainWindow):
                         found = finder.find_image()
                         time.sleep(1)
                     print(f"Char {self.account['login']} saiu da fila.")
+                    # Envia notificação para o Telegram
+                    send_telegram_message("saiu da fila")
                 else:
                     print(f"Char {self.account['login']} sem fila.")
                 
