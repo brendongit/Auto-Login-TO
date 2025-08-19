@@ -127,7 +127,7 @@ class AccountDialog(QDialog):
                             color: #d4d4d4; /* Change text color */
                         }"""
 
-        self.server_list = ["Light in the Darkness", "All Stars", "Tiger Fish", "Giant Sky Medal", "Wild Wave(EE)", "Blue Ice"]
+        self.server_list = ["White Horse [NEW]", "Light in the Darkness", "All Stars", "Tiger Fish", "Giant Sky Medal", "Wild Wave(EE)", "Blue Ice"]
         self.pos = ["Left", "Center", "Right"]
         
         # Main layout
@@ -555,6 +555,7 @@ class AutoLoginWindow(QMainWindow):
                 "server_4": (348,283),
                 "server_5": (349,267),
                 "server_6": (353, 245),
+                "server_7": (355, 225),
                 "ok_server": (557, 531),
                 "pos_1": (144, 453),
                 "pos_2": (465, 466),
@@ -717,12 +718,13 @@ class AutoLoginWindow(QMainWindow):
                 # Seleciona servidor
                 server = self.account["server"]
                 server_coords = {
-                    "Light in the Darkness": 'server_1',
-                    "All Stars": 'server_2',
-                    "Tiger Fish": 'server_3',
-                    "Giant Sky Medal": 'server_4',
-                    "Wild Wave(EE)": 'server_5',
-                    "Blue Ice": 'server_6'
+                    "White Horse [NEW]": 'server_1',
+                    "Light in the Darkness": 'server_2',
+                    "All Stars": 'server_3',
+                    "Tiger Fish": 'server_4',
+                    "Giant Sky Medal": 'server_5',
+                    "Wild Wave(EE)": 'server_6',
+                    "Blue Ice": 'server_7'
                 }
 
                 if server in server_coords:
