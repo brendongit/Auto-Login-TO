@@ -37,7 +37,7 @@ def send_telegram_message(message):
     try:
         bot_token = "8218411510:AAH9xMjWe8eJNa7APgaOvP9aXiuf8j86OA8"
         # Usando o chat_id que será determinado. Por enquanto vou usar um método alternativo
-        chat_id = None
+        chat_id = 7874718818
         
         # Primeiro, tenta obter o chat_id das atualizações recentes
         try:
