@@ -718,13 +718,13 @@ class AutoLoginWindow(QMainWindow):
                 # Seleciona servidor
                 server = self.account["server"]
                 server_coords = {
-                    "White Horse [NEW]": 'server_1',
+                    "White Horse [NEW]": 'server_7',
                     "Light in the Darkness": 'server_2',
                     "All Stars": 'server_3',
                     "Tiger Fish": 'server_4',
                     "Giant Sky Medal": 'server_5',
                     "Wild Wave(EE)": 'server_6',
-                    "Blue Ice": 'server_7'
+                    "Blue Ice": 'server_1'
                 }
 
                 if server in server_coords:
