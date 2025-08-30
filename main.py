@@ -800,7 +800,7 @@ class AutoLoginWindow(QMainWindow):
                 # Character name
                 pointers = Pointers(self.pid)
                 char_name = pointers.get_char_name()
-                win32gui.SetWindowText(self.hwnd, char_name)
+                win32gui.SetWindowText(self.hwnd, self.account['login'])
                 time.sleep(1)
                 
                 return True
