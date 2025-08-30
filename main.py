@@ -127,7 +127,8 @@ class AccountDialog(QDialog):
                             color: #d4d4d4; /* Change text color */
                         }"""
 
-        self.server_list = ["White Horse [NEW]", "Light in the Darkness", "All Stars", "Tiger Fish", "Giant Sky Medal", "Wild Wave(EE)", "Blue Ice"]
+        self.server_list = ["Light in the Darkness", "All Stars", "Tiger Fish", "Giant Sky Medal", "Wild Wave(EE)",
+                            "Blue Ice", "White Horse [NEW]"]
         self.pos = ["Left", "Center", "Right"]
         
         # Main layout
@@ -549,18 +550,18 @@ class AutoLoginWindow(QMainWindow):
                 "password": (613, 425),
                 "passError": (515, 333),
                 "ok_button": (518, 495),
-                "server_1": (344,346),
-                "server_2": (346,327),
-                "server_3": (339,305),
-                "server_4": (348,283),
-                "server_5": (349,267),
-                "server_6": (353, 245),
-                "server_7": (355, 225),
+                "server_1": (339,365),
+                "server_2": (344,345),
+                "server_3": (354,323),
+                "server_4": (360,302),
+                "server_5": (342,283),
+                "server_6": (342,264),
+                "server_7": (339,245),
                 "ok_server": (557, 531),
                 "pos_1": (144, 453),
                 "pos_2": (465, 466),
                 "pos_3": (827, 471),
-                "entergame": (515, 735)
+                "entergame": (511,653)
             }
 
         def find_window_alternative(self):
@@ -718,13 +719,13 @@ class AutoLoginWindow(QMainWindow):
                 # Seleciona servidor
                 server = self.account["server"]
                 server_coords = {
-                    "White Horse [NEW]": 'server_7',
                     "Light in the Darkness": 'server_2',
-                    "All Stars": 'server_3',
+                    "All Stars": 'server_1',
                     "Tiger Fish": 'server_4',
                     "Giant Sky Medal": 'server_5',
-                    "Wild Wave(EE)": 'server_6',
-                    "Blue Ice": 'server_1'
+                    "Wild Wave(EE)": 'server_3',
+                    "Blue Ice": 'server_6',
+                    "White Horse [NEW]": 'server_7',
                 }
 
                 if server in server_coords:
